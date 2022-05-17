@@ -1,0 +1,9 @@
+<h1>All Posts</h1>
+<ul>
+{% for post in object_list %}
+<li><a href="{% url 'posts-detail' post.pk %}">{{post.title}} </a> - {{post.date_created|date}}</li> 
+{% empty %}
+<h2>No Posts Yet</h2>
+{% endfor %}
+
+</ul>
