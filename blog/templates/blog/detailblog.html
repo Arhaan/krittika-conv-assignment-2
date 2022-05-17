@@ -1,6 +1,11 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
 <h1>{{ object.title }}</h1>
-<h3>Published on: {{object.date_created|date}}</h3>
-<h3>Author: {{object.author.username}}</h3>
+<h4> Category: {{object.category}} </h4>
+<h5>Published on: {{object.date_created|date}}</h5>
+<h5>Author: {{object.author.username}}</h5>
 <p>
     {{object.content|safe}}
 </p>
+{% endblock content %}

@@ -3,10 +3,12 @@ from ckeditor.widgets import CKEditorWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
-from .models import Post
+from .models import Post, CATEGORIES
 class PostCreateForm(forms.Form):
     title = forms.CharField(required=True)
+    category = forms.ChoiceField(choices=CATEGORIES)
     content = forms.CharField(widget=CKEditorWidget(), required=True)
+   
 
     class Meta:
         model = Post
