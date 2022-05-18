@@ -35,6 +35,9 @@
                       </li>
                     {% else %}
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register'%}">Register</a>
+                      </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'login'%}">Login</a>
                       </li>
                     {%endif%}
@@ -45,6 +48,17 @@
           </nav>
 
     <div class="container">
+      {% if messages %}
+      <br/>
+      <div class="alert alert-block alert-danger">
+      <ul class="">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+    </div>
+      {% endif %}
+
         {% block content %}{% endblock content %}
     </div>
     

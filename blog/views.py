@@ -1,8 +1,11 @@
+from django.shortcuts import redirect, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
-from .forms import PostCreateForm
+from .forms import PostCreateForm, UserCreateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import login
+from django.contrib import messages
 
 
 
@@ -27,3 +30,15 @@ class PostCreateView(LoginRequiredMixin ,FormView):
         p = Post.objects.create(author=self.request.user, title=self.request.POST['title'], content=self.request.POST['content'])
         p.save()
         return super().form_valid(form)
+
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("posts-list")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = UserCreateForm()
+    return render(request=request, template_name="registration/register.html", context={"form":form})
