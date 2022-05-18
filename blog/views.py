@@ -27,7 +27,8 @@ class PostCreateView(LoginRequiredMixin ,FormView):
     success_url = "/view_blog/" # TODO: Do this using reverse
 
     def form_valid(self, form):
-        p = Post.objects.create(author=self.request.user, title=self.request.POST['title'], content=self.request.POST['content'])
+        # breakpoint()
+        p = Post.objects.create(author=self.request.user, title=self.request.POST['title'], content=self.request.POST['content'], photo=self.request.FILES['photo'])
         p.save()
         return super().form_valid(form)
 

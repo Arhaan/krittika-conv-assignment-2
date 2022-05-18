@@ -16,6 +16,8 @@ class Post(models.Model):
     content = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=100, choices=CATEGORIES, default="General")
+    photo = models.ImageField(upload_to='img', default="default.jpg")
+
 
     
 

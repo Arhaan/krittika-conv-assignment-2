@@ -11,7 +11,7 @@ class PostCreateForm(forms.Form):
     title = forms.CharField(required=True)
     category = forms.ChoiceField(choices=CATEGORIES)
     content = forms.CharField(widget=CKEditorWidget(), required=True)
-    image = forms.ImageField()
+    photo = forms.ImageField()
    
 
     class Meta:
